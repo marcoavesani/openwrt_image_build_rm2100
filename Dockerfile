@@ -17,7 +17,7 @@
 #
 #WORKDIR /src
 
-#ENV GIT_REPO=trinhpham/xiaomi-r3g-openwrt-builder
+
 
 #ADD start.sh /src/
 
@@ -28,6 +28,8 @@ RUN wget https://github.com/github-release/github-release/releases/latest/downlo
 RUN bzip2 -d linux-amd64-github-release.bz2 
 RUN	chmod +x ./linux-amd64-github-release 
 RUN	sudo cp ./linux-amd64-github-release /usr/bin
+
+ENV GIT_REPO=marcoavesani/openwrt_image_build_rm2100
 
 WORKDIR /src
 COPY . /src
