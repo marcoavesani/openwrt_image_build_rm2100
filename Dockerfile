@@ -34,5 +34,6 @@ ENV GIT_REPO=marcoavesani/openwrt_image_build_rm2100
 WORKDIR /src
 COPY . /src
 RUN make /src
+CMD ["chmod -R 777 /src"]
 CMD bash build_RM2100.sh
 #CMD python /app/app.py

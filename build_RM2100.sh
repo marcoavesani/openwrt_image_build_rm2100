@@ -12,6 +12,9 @@ echo "Begin build ${RELEASE_NAME} with modules ${RELEASE_MODULES}"
 # scl enable rh-python38 bash
 #source /opt/rh/rh-python38/enable
 
+echo "Current directory"
+pwd
+
 wget https://downloads.openwrt.org/snapshots/targets/ramips/mt7621/openwrt-imagebuilder-ramips-mt7621.Linux-x86_64.tar.xz
 tar -xvf openwrt-imagebuilder-ramips-mt7621.Linux-x86_64.tar.xz >/dev/null
 rm -f openwrt-imagebuilder-ramips-mt7621.Linux-x86_64.tar.xz
