@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/[actual_travis_link].svg?branch=master)](https://travis-ci.org/[actual_travis_link])
+[![Build Status](https://travis-ci.org/marcoavesani/openwrt_image_build_rm2100.svg?branch=master)](https://travis-ci.org/marcoavesani/openwrt_image_build_rm2100])
 
 [Latest build](https://github.com/[actual_link]/releases/latest)
 
