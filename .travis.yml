@@ -9,7 +9,8 @@ before_install:
   #- docker pull trinhpham/xiaomi-r3g-openwrt-builder
   - docker build -t marcoavesani/openwrt_image_build_rm2100 .
 
-before_script: chmod 777 /src -r
+before_script: 
+ - chmod -R 777 /src 
 
 
 script:
