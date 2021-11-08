@@ -1,5 +1,4 @@
-[![Build Status](https://travis-ci.com/marcoavesani/openwrt_image_build_rm2100.svg?branch=master)](https://travis-ci.com/marcoavesani/openwrt_image_build_rm2100)
-
+[![Build Status](https://circleci.com/gh/marcoavesani/openwrt_image_build_rm2100/tree/master.svg?style=svg)](https://circleci.com/gh/marcoavesani/openwrt_image_build_rm2100/tree/master)
 [Latest build](https://github.com/marcoavesani/openwrt_image_build_rm2100/releases/latest)
 
 [Homepage](https://github.com/marcoavesani/openwrt_image_build_rm2100)
@@ -12,17 +11,17 @@ The firmware is built using the :
 * [OpenWRT image builder](https://openwrt.org/docs/guide-user/additional-software/imagebuilder)
 * [OpenWRT's docker image](https://hub.docker.com/r/openwrtorg/imagebuilder)
 * [Custom Docker image ](https://hub.docker.com/r/marcoavesani/openwrt_image_build_rm2100)
-* [Travis-CI](https://www.travis-ci.com/)
+* [Circle-CI](https://circleci.com/)
 
 # Idea
 
 The Dockerfile in this repo defines a container based on the [OpenWRT's docker image of the Image Builder](https://hub.docker.com/r/openwrtorg/imagebuilder).
 When the the Docker is run it clones the build script and the modules defined in build_RM2100.sh.
 Via GitHub actions, every commit triggers an automated Docker build, uploaded to [DockerHub](https://hub.docker.com/r/marcoavesani/openwrt_image_build_rm2100)
-Then, [Travis-CI](https://travis-ci.com/github/marcoavesani/openwrt_image_build_rm2100) is triggered and the binaries are pushed in the [Latest build](https://github.com/marcoavesani/openwrt_image_build_rm2100/releases/latest) using [github-release](https://github.com/github-release/github-release)
+Then, [Circle-CI](https://app.circleci.com/pipelines/github/marcoavesani/openwrt_image_build_rm2100) is triggered and the binaries are pushed in the [Latest build](https://github.com/marcoavesani/openwrt_image_build_rm2100/releases/latest) using [github-release](https://github.com/github-release/github-release)
 
-# The Travis-CI build
-You can view my automated build at [travis-ci.com](https://travis-ci.com/github/marcoavesani/openwrt_image_build_rm2100).
+# The Circle-CI build
+You can view my automated build at [Circle-CI](https://app.circleci.com/pipelines/github/marcoavesani/openwrt_image_build_rm2100).
 This build calls the build script `build_RM2100.sh` inside a Docker container of Docker image above.
 
 # Acknowledgement
