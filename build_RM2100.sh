@@ -4,8 +4,11 @@ set -xe
 
 RELEASE_NAME=$(date +%Y%m%d_%H%M%S)
 RELEASE_MODULES=`cat modules.txt`
-GIT_USER=${GIT_REPO%%/*}
-GIT_REPO_NAME=${GIT_REPO##*/}
+#GIT_USER=${GIT_REPO%%/*}
+#GIT_REPO_NAME=${GIT_REPO##*/}
+
+GIT_USER=marcoavesani
+GIT_REPO_NAME=openwrt_image_build_rm2100
 
 echo "Begin build ${RELEASE_NAME} with modules ${RELEASE_MODULES}"
 echo "Using git user ${GIT_USER} with git repo name ${GIT_REPO_NAME}"
