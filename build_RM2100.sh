@@ -8,6 +8,7 @@ GIT_USER=${GIT_REPO%%/*}
 GIT_REPO_NAME=${GIT_REPO##*/}
 
 echo "Begin build ${RELEASE_NAME} with modules ${RELEASE_MODULES}"
+echo "Using git user ${GIT_USER} with git repo name ${GIT_REPO_NAME}"
 
 # scl enable rh-python38 bash
 #source /opt/rh/rh-python38/enable
