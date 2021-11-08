@@ -1,0 +1,32 @@
+# Use the latest 2.1 version of CircleCI pipeline process engine.
+# See: https://circleci.com/docs/2.0/configuration-reference
+version: 2.1
+# Define a job to be invoked later in a workflow.
+# See: https://circleci.com/docs/2.0/configuration-reference/#jobs
+
+
+jobs:
+  build:
+    machine:
+      image: ubuntu-2004:202107-02
+    # Add steps to the job
+    # See: https://circleci.com/docs/2.0/configuration-reference/#steps
+    steps:
+      - checkout
+      - run:
+          name: The First Step
+          command: |
+            docker build -t marcoavesani/openwrt_image_build_rm2100 .
+      - run:
+          name: Code Has Arrived
+          command: |
+            ls -al
+            docker run -t -e GITHUB_TOKEN=$GITHUB_TOKEN -e GIT_REPO=$TRAVIS_REPO_SLUG marcoavesani/openwrt_image_build_rm2100
+
+
+# Invoke jobs via workflows
+# See: https://circleci.com/docs/2.0/configuration-reference/#workflows
+workflows:
+  build-workflow:
+    jobs:
+      - build
