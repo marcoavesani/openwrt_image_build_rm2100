@@ -34,3 +34,5 @@ workflows:
     triggers:
       - schedule:
           cron: "0 23 * * 5"
+    jobs:
+      - build
