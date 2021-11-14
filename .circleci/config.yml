@@ -30,7 +30,7 @@ workflows:
   build-workflow:
     jobs:
       - build
-    scheduled-workflow:
-      triggers:
-        - schedule:
-            cron: "0 23 * * 5"
+  scheduled-workflow:
+    triggers:
+      - schedule:
+          cron: "0 23 * * 5"
