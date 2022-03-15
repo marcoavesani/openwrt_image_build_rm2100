@@ -27,3 +27,4 @@ This build calls the build script `build_RM2100.sh` inside a Docker container of
 
 # Acknowledgement
 The code is based on [trinhpham/xiaomi-r3g-openwrt-builder](https://github.com/trinhpham/xiaomi-r3g-openwrt-builder)
+
