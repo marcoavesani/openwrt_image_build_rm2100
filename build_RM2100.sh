@@ -39,6 +39,8 @@ if [ $? -eq 0 ] ; then
 			--name $RELEASE_NAME \
 			--description "CI build includes: ${RELEASE_MODULES}"
 			
+		sleep 10
+			
 		github-release upload \
 			--user $GIT_USER \
 			--repo $GIT_REPO_NAME \
@@ -46,6 +48,8 @@ if [ $? -eq 0 ] ; then
 			--name openwrt-ramips-mt7621-xiaomi_redmi-router-ac2100.manifest \
 			--file bin/targets/ramips/mt7621/openwrt-ramips-mt7621-xiaomi_redmi-router-ac2100.manifest
 			
+		sleep 10
+		
 		github-release upload \
 			--user $GIT_USER \
 			--repo $GIT_REPO_NAME \
@@ -53,12 +57,16 @@ if [ $? -eq 0 ] ; then
 			--name openwrt-ramips-mt7621-xiaomi_redmi-router-ac2100-squashfs-rootfs0.bin \
 			--file bin/targets/ramips/mt7621/openwrt-ramips-mt7621-xiaomi_redmi-router-ac2100-squashfs-rootfs0.bin
 			
+		sleep 10
+		
 		github-release upload \
 			--user $GIT_USER \
 			--repo $GIT_REPO_NAME \
 			--tag $RELEASE_NAME \
 			--name sha256sums \
 			--file bin/targets/ramips/mt7621/sha256sums
+			
+		sleep 10
 
 		github-release upload \
 			--user $GIT_USER \
@@ -66,7 +74,9 @@ if [ $? -eq 0 ] ; then
 			--tag $RELEASE_NAME \
 			--name openwrt-ramips-mt7621-xiaomi_redmi-router-ac2100-squashfs-kernel1.bin \
 			--file bin/targets/ramips/mt7621/openwrt-ramips-mt7621-xiaomi_redmi-router-ac2100-squashfs-kernel1.bin
-			
+		
+		sleep 10	
+		
 		github-release upload \
 			--user $GIT_USER \
 			--repo $GIT_REPO_NAME \
