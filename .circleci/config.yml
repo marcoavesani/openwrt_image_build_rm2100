@@ -6,7 +6,7 @@ version: 2.1
 
 
 jobs:
-  build:
+  buildDocker:
     machine:
       image: ubuntu-2004:202107-02
     # Add steps to the job
@@ -18,22 +18,29 @@ jobs:
           command: |
             docker build -t marcoavesani/openwrt_image_build_rm2100 .            
 
-      - run:
-          name: Upload to github
-          command: |
-            ls -al
-            docker run -t -e GITHUB_TOKEN=$GITHUB_TOKEN -e GIT_REPO=$TRAVIS_REPO_SLUG marcoavesani/openwrt_image_build_rm2100
+#       - run:
+#           name: Upload to github
+#           command: |
+#             ls -al
+#             docker run -t -e GITHUB_TOKEN=$GITHUB_TOKEN -e GIT_REPO=$TRAVIS_REPO_SLUG marcoavesani/openwrt_image_build_rm2100
             
+
+  buildOpenwrt:
+    docker:
+      - image: marcoavesani/openwrt_image_build_rm2100
+#         auth:
+#           username: mydockerhub-user
+#           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
       - store_artifacts:
           path: /tmp/openwrt
-
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
   build-workflow:
     jobs:
-      - build
+      - buildDocker
+      - buildOpenwrt
   scheduled-workflow:
     triggers:
       - schedule:
