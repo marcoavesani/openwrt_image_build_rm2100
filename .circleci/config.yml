@@ -52,8 +52,7 @@ workflows:
     jobs:
       - buildDocker
       - buildOpenwrt
-        requires:
-          - buildDocker
+
   scheduled-workflow:
     triggers:
       - schedule:
