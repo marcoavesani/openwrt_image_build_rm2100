@@ -30,6 +30,9 @@ pwd
 echo "Current ouput dir"
 ls -laR bin/targets/ramips/mt7621/
 
+mkdir /tmp/openwrt
+cp  bin/targets/ramips/mt7621/*.bin /tmp/openwrt
+
 if [ $? -eq 0 ] ; then
 	if [[ ! -z "$GITHUB_TOKEN" ]] ; then
 		echo "Begin upload the release: $RELEASE_NAME"
