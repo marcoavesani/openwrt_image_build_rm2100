@@ -14,11 +14,13 @@ jobs:
     steps:
       - checkout
       - run:
-          name: The First Step
+          name: Build stuff
           command: |
-            docker build -t marcoavesani/openwrt_image_build_rm2100 .
+            docker build -t marcoavesani/openwrt_image_build_rm2100 .            
+      - store_artifacts:
+          path: bin/targets/ramips/mt7621/
       - run:
-          name: Code Has Arrived
+          name: Upload to github
           command: |
             ls -al
             docker run -t -e GITHUB_TOKEN=$GITHUB_TOKEN -e GIT_REPO=$TRAVIS_REPO_SLUG marcoavesani/openwrt_image_build_rm2100
