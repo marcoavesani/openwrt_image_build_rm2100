@@ -36,7 +36,7 @@ jobs:
       - run:
           name: Build stuff
           command: |
-            echo "Start building things"
+            ./build_RM2100.sh
             
       - store_artifacts:
           path: /tmp/openwrt
