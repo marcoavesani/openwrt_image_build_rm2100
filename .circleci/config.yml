@@ -17,13 +17,15 @@ jobs:
           name: Build stuff
           command: |
             docker build -t marcoavesani/openwrt_image_build_rm2100 .            
-      - store_artifacts:
-          path: bin/targets/ramips/mt7621/
+
       - run:
           name: Upload to github
           command: |
             ls -al
             docker run -t -e GITHUB_TOKEN=$GITHUB_TOKEN -e GIT_REPO=$TRAVIS_REPO_SLUG marcoavesani/openwrt_image_build_rm2100
+            
+      - store_artifacts:
+          path: /home/build/openwrt/openwrt-imagebuilder-ramips-mt7621.Linux-x86_64/bin/targets/ramips/mt7621/
 
 
 # Invoke jobs via workflows
