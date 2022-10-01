@@ -31,6 +31,13 @@ jobs:
 #         auth:
 #           username: mydockerhub-user
 #           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
+    steps:
+      - checkout
+      - run:
+          name: Build stuff
+          command: |
+            echo "Start building things"
+            
       - store_artifacts:
           path: /tmp/openwrt
 
@@ -49,4 +56,5 @@ workflows:
             branches:
               only: master
     jobs:
-      - build
+      - buildDocker
+      - buildOpenwrt
