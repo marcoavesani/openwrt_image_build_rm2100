@@ -25,6 +25,8 @@ rm -f openwrt-imagebuilder-ramips-mt7621.Linux-x86_64.tar.xz
 cd openwrt-imagebuilder-ramips-mt7621.Linux-x86_64
 make image PROFILE=xiaomi_redmi-router-ac2100 "PACKAGES=${RELEASE_MODULES}"
 
+echo "Running dir"
+pwd
 echo "Current ouput dir"
 ls -laR bin/targets/ramips/mt7621/
 
