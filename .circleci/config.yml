@@ -50,7 +50,7 @@ jobs:
 workflows:
   build-workflow:
     jobs:
-      - buildDocker
+#       - buildDocker
       - buildOpenwrt
 #          requires:
 #              - buildDocker
@@ -63,7 +63,7 @@ workflows:
             branches:
               only: master
     jobs:
-      - buildDocker
+#       - buildDocker
       - buildOpenwrt
  #         requires:
  #             - buildDocker
