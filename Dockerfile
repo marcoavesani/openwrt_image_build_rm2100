@@ -24,6 +24,7 @@
 #CMD ["/src/start.sh"]
 
 FROM openwrt/imagebuilder
+RUN apt-get update && apt-get install -y zstd 
 RUN wget https://github.com/github-release/github-release/releases/latest/download/linux-amd64-github-release.bz2 
 RUN bzip2 -d linux-amd64-github-release.bz2 
 RUN	chmod +x ./linux-amd64-github-release 
