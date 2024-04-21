@@ -19,9 +19,13 @@ echo "Using git user ${GIT_USER} with git repo name ${GIT_REPO_NAME}"
 echo "Current directory"
 pwd
 
-wget https://downloads.openwrt.org/snapshots/targets/ramips/mt7621/openwrt-imagebuilder-ramips-mt7621.Linux-x86_64.tar.xz
-tar -xvf openwrt-imagebuilder-ramips-mt7621.Linux-x86_64.tar.xz >/dev/null
-rm -f openwrt-imagebuilder-ramips-mt7621.Linux-x86_64.tar.xz
+# wget https://downloads.openwrt.org/snapshots/targets/ramips/mt7621/openwrt-imagebuilder-ramips-mt7621.Linux-x86_64.tar.xz
+wget https://downloads.openwrt.org/snapshots/targets/ramips/mt7621/openwrt-imagebuilder-ramips-mt7621.Linux-x86_64.tar.zst
+# tar -xvf openwrt-imagebuilder-ramips-mt7621.Linux-x86_64.tar.xz >/dev/null
+# rm -f openwrt-imagebuilder-ramips-mt7621.Linux-x86_64.tar.xz
+tar --use-compress-program=unzstd -xvf openwrt-imagebuilder-ramips-mt7621.Linux-x86_64.tar.zst >/dev/null
+rm -f openwrt-imagebuilder-ramips-mt7621.Linux-x86_64.tar.zst
+
 cd openwrt-imagebuilder-ramips-mt7621.Linux-x86_64
 make image PROFILE=xiaomi_redmi-router-ac2100 "PACKAGES=${RELEASE_MODULES}"
 
