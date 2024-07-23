@@ -5,7 +5,7 @@
 
 # Introduction
 OpenWRT provides support for the Xiaomi Redmi AC2100 router in the snapshot branch with a minimal set of packages.
-The purpose of this repository is to provide daily images, up-to-date with the snapshot, with additional packages customized for my needs.
+The purpose of this repository is to provide weekly images, up-to-date with the snapshot, with additional packages customized for my needs.
 
 The firmware is built using the : 
 * [OpenWRT image builder](https://openwrt.org/docs/guide-user/additional-software/imagebuilder)
