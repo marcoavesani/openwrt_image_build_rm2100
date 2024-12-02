@@ -27,7 +27,9 @@ tar --use-compress-program=unzstd -xvf openwrt-imagebuilder-ramips-mt7621.Linux-
 rm -f openwrt-imagebuilder-ramips-mt7621.Linux-x86_64.tar.zst
 
 cd openwrt-imagebuilder-ramips-mt7621.Linux-x86_64
-make image PROFILE=xiaomi_redmi-router-ac2100 "PACKAGES=${RELEASE_MODULES}"
+mkdir -p files
+cp ../auto_upgrade_openwrt.sh ./files
+make image PROFILE=xiaomi_redmi-router-ac2100 "PACKAGES=${RELEASE_MODULES}" FILES="files" 
 
 echo "Running dir"
 pwd
