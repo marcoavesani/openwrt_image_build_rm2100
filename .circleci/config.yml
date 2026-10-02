@@ -1,62 +1,51 @@
-# Use the latest 2.1 version of CircleCI pipeline process engine.
-# See: https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
-# Define a job to be invoked later in a workflow.
-# See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 
+# Builds the Redmi AC2100 image on every push and every Friday at 23:00 UTC.
+# Only builds of master are published as GitHub releases; other branches
+# just keep the images as CircleCI artifacts.
+#
+# Project environment variables (CircleCI > Project Settings):
+#   GITHUB_TOKEN     required for the release upload
+#   OPENWRT_VERSION  optional, "snapshot" (default) or e.g. "25.12.5"
+#   KEEP_RELEASES    optional, keep only the newest N releases
 
 jobs:
-  buildDocker:
-    machine:
-      image: ubuntu-2004:202107-02
-    # Add steps to the job
-    # See: https://circleci.com/docs/2.0/configuration-reference/#steps
-    steps:
-      - checkout
-      - run:
-          name: Build stuff
-          command: |
-            docker build -t marcoavesani/openwrt_image_build_rm2100 .            
-
-#       - run:
-#           name: Upload to github
-#           command: |
-#             ls -al
-#             docker run -t -e GITHUB_TOKEN=$GITHUB_TOKEN -e GIT_REPO=$TRAVIS_REPO_SLUG marcoavesani/openwrt_image_build_rm2100
-            
-
-  buildOpenwrt:
+  build-openwrt:
     docker:
-      - image: marcoavesani/openwrt_image_build_rm2100
-#         auth:
-#           username: mydockerhub-user
-#           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
+      - image: cimg/base:current
+    resource_class: medium
+    environment:
+      GITHUB_REPO: marcoavesani/openwrt_image_build_rm2100
     steps:
       - checkout
       - run:
-          name: Prepare script
+          name: Install ImageBuilder dependencies and gh
           command: |
-            chmod +x build_RM2100.sh
+            sudo apt-get update -qq
+            sudo apt-get install -y -qq --no-install-recommends \
+              build-essential file gawk gettext git libncurses-dev libssl-dev \
+              python3 python3-setuptools rsync unzip wget xsltproc zlib1g-dev zstd
+            GH_VERSION=2.62.0
+            wget -q "https://github.com/cli/cli/releases/download/v${GH_VERSION}/gh_${GH_VERSION}_linux_amd64.tar.gz" -O /tmp/gh.tgz
+            sudo tar -xzf /tmp/gh.tgz -C /usr/local --strip-components=1
+            gh --version
       - run:
-          name: Build
+          name: Build and release
           command: |
+            if [ "$CIRCLE_BRANCH" != "master" ]; then
+              echo "Branch $CIRCLE_BRANCH: building without a release"
+              unset GITHUB_TOKEN
+            fi
             ./build_RM2100.sh
-            
       - store_artifacts:
           path: /tmp/openwrt
-          
 
-# Invoke jobs via workflows
-# See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
-  build-workflow:
+  build-on-push:
     jobs:
-#       - buildDocker
-      - buildOpenwrt
-#          requires:
-#              - buildDocker
+      - build-openwrt
 
-  scheduled-workflow:
+  weekly:
     triggers:
       - schedule:
           cron: "0 23 * * 5"
@@ -64,7 +53,4 @@ workflows:
             branches:
               only: master
     jobs:
-#       - buildDocker
-      - buildOpenwrt
- #         requires:
- #             - buildDocker
+      - build-openwrt
